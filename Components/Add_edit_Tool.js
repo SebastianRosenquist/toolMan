@@ -1,14 +1,5 @@
 import * as React from 'react';
-import {
-    View,
-    Text,
-    StyleSheet,
-    TextInput,
-    Button,
-    Alert,
-    ScrollView,
-    SafeAreaView,
-} from 'react-native';
+import {View, Text, StyleSheet, TextInput, Button, Alert, ScrollView, SafeAreaView,} from 'react-native';
 import firebase from 'firebase';
 import {useEffect, useState} from "react";
 
