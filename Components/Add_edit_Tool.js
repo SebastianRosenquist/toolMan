@@ -6,7 +6,7 @@ import {useEffect, useState} from "react";
 const Add_edit_Tool = ({navigation,route}) => {
 
     const initialState = {
-        brand: '',
+        type: '',
         model: '',
         year: '',
         licensePlate: ''
@@ -14,7 +14,7 @@ const Add_edit_Tool = ({navigation,route}) => {
 
     const [newTool,setNewTool] = useState(initialState);
 
-    /*Returnere true, hvis vi er på edit car*/
+    /*Returnere true, hvis vi er på edit tool*/
     const isEditTool = route.name === "Edit Tool";
 
     useEffect(() => {
@@ -34,9 +34,9 @@ const Add_edit_Tool = ({navigation,route}) => {
 
     const handleSave = () => {
 
-        const { brand, model, year, licensePlate } = newTool;
+        const { type, model, year, licensePlate } = newTool;
 
-        if(brand.length === 0 || model.length === 0 || year.length === 0 || licensePlate.length === 0 ){
+        if(type.length === 0 || model.length === 0 || year.length === 0 || licensePlate.length === 0 ){
             return Alert.alert('Et af felterne er tomme!');
         }
 
@@ -47,7 +47,7 @@ const Add_edit_Tool = ({navigation,route}) => {
                     .database()
                     .ref(`/Tools/${id}`)
                     // Vi bruger update, så kun de felter vi angiver, bliver ændret
-                    .update({ brand, model, year, licensePlate });
+                    .update({ type, model, year, licensePlate });
                 // Når bilen er ændret, går vi tilbage.
                 Alert.alert("Din info er nu opdateret");
                 const tool = [id,newTool]
@@ -62,7 +62,7 @@ const Add_edit_Tool = ({navigation,route}) => {
                 firebase
                     .database()
                     .ref('/Tools/')
-                    .push({ brand, model, year, licensePlate });
+                    .push({ type, model, year, licensePlate });
                 Alert.alert(`Saved`);
                 setNewTool(initialState)
             } catch (error) {
@@ -74,6 +74,9 @@ const Add_edit_Tool = ({navigation,route}) => {
 
     return (
         <SafeAreaView style={styles.container}>
+            <Text>
+                Hi. På denne fane vil du kunne tilføje dit værktøj til vores søgmaskine som du gerne vil leje ud.
+            </Text>
             <ScrollView>
                 {
                     Object.keys(initialState).map((key,index) =>{

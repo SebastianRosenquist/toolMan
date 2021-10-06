@@ -43,7 +43,7 @@ const ToolList = ({navigation}) => {
                 return(
                     <TouchableOpacity style={styles.container} onPress={() => handleSelectTool(toolKeys[index])}>
                         <Text>
-                            {item.brand} {item.model}
+                            {item.type} {item.model}
                         </Text>
                     </TouchableOpacity>
                 )

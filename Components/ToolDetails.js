@@ -35,13 +35,13 @@ const ToolDetails = ({route,navigation}) => {
         }
     };
 
-    // Vi sletter den aktuelle bil
+    // Vi sletter det aktuelle tool
     const  handleDelete = () => {
         const id = route.params.tool[0];
         try {
             firebase
                 .database()
-                // Vi sætter bilens ID ind i stien
+                // Vi sætter værktøjet ID ind i stien
                 .ref(`/Tools/${id}`)
                 // Og fjerner data fra den sti
                 .remove();

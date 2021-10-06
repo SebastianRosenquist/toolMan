@@ -8,6 +8,7 @@ import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import ToolList from "./Components/ToolList";
 import Add_edit_Tool from "./Components/Add_edit_Tool";
 import ToolDetails from "./Components/ToolDetails";
+import SearchTool from "./Components/SearchTool";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 export default function App() {
@@ -47,7 +48,8 @@ export default function App() {
       <NavigationContainer>
           <Tab.Navigator>
               <Tab.Screen name={'Home'} component={StackNavigation} options={{tabBarIcon: () => ( <Ionicons name="home" size={20} />),headerShown:null}}/>
-              <Tab.Screen name={'Add'} component={Add_edit_Tool} options={{tabBarIcon: () => ( <Ionicons name="add" size={20} />)}}/>
+              <Tab.Screen name={'Search'} component={SearchTool} options={{tabBarIcon: () => ( <Ionicons name="search" size={20} />)}}/>
+              <Tab.Screen name={'Rent'} component={Add_edit_Tool} options={{tabBarIcon: () => ( <Ionicons name="cash-outline" size={20} />)}}/>
           </Tab.Navigator>
       </NavigationContainer>
   );
