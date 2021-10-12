@@ -37,7 +37,7 @@ const ToolList = ({navigation}) => {
     return (
         <FlatList
             data={toolArray}
-            // Vi bruger carKeys til at finde ID på den aktuelle bil og returnerer dette som key, og giver det med som ID til CarListItem
+            // Vi bruger toolKeys til at finde ID på det aktuelle værktøj og returnerer dette som key, og giver det med som ID til ToolListItem
             keyExtractor={(item, index) => toolKeys[index]}
             renderItem={({ item, index }) => {
                 return(

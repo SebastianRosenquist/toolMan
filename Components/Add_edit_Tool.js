@@ -8,8 +8,8 @@ const Add_edit_Tool = ({navigation,route}) => {
     const initialState = {
         type: '',
         model: '',
-        year: '',
-        licensePlate: ''
+        duration: '',
+        price: ''
     }
 
     const [newTool,setNewTool] = useState(initialState);
@@ -34,10 +34,10 @@ const Add_edit_Tool = ({navigation,route}) => {
 
     const handleSave = () => {
 
-        const { type, model, year, licensePlate } = newTool;
+        const { type, model, duration, price } = newTool;
 
-        if(type.length === 0 || model.length === 0 || year.length === 0 || licensePlate.length === 0 ){
-            return Alert.alert('Et af felterne er tomme!');
+        if(type.length === 0 || model.length === 0 || duration.length === 0 || price.length === 0 ){
+            return Alert.alert('One of your fields is empty!');
         }
 
         if(isEditTool){
@@ -47,9 +47,9 @@ const Add_edit_Tool = ({navigation,route}) => {
                     .database()
                     .ref(`/Tools/${id}`)
                     // Vi bruger update, så kun de felter vi angiver, bliver ændret
-                    .update({ type, model, year, licensePlate });
-                // Når bilen er ændret, går vi tilbage.
-                Alert.alert("Din info er nu opdateret");
+                    .update({ type, model, duration, price });
+                // Når værktøjet er ændret, går vi tilbage.
+                Alert.alert("Your info has been updated");
                 const tool = [id,newTool]
                 navigation.navigate("Tool Details",{tool});
             } catch (error) {
@@ -62,7 +62,7 @@ const Add_edit_Tool = ({navigation,route}) => {
                 firebase
                     .database()
                     .ref('/Tools/')
-                    .push({ type, model, year, licensePlate });
+                    .push({ type, model, duration, price });
                 Alert.alert(`Saved`);
                 setNewTool(initialState)
             } catch (error) {
@@ -92,9 +92,13 @@ const Add_edit_Tool = ({navigation,route}) => {
                         )
                     })
                 }
-                {/*Hvis vi er inde på edit car, vis save changes i stedet for add car*/}
+                {/*Hvis vi er inde på edit tool, vis save changes i stedet for add tool*/}
                 <Button title={ isEditTool ? "Save changes" : "Add tool"} onPress={() => handleSave()} />
             </ScrollView>
+            <Text>
+                Man vil i fremtidige version også kunne tilføje en liste over hvilke værktøj er tilgænglig (hvis man vil leje en hel værktøjskasse ud).
+                Man vil også kunne tilføje/tage et billede af værktøjet
+            </Text>
         </SafeAreaView>
     );
 }
