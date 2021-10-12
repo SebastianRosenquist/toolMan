@@ -18,7 +18,7 @@ const ToolDetails = ({route,navigation}) => {
     });
 
     const handleEdit = () => {
-        // Vi navigerer videre til EditCar skærmen og sender bilen videre med
+        // Vi navigerer videre til EditTool skærmen og sender værktøjet videre
         const tool = route.params.tool
         navigation.navigate('Edit Tool', { tool });
     };

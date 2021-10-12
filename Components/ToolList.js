@@ -21,7 +21,7 @@ const ToolList = ({navigation}) => {
 
     // Vi viser ingenting hvis der ikke er data
     if (!tools) {
-        return <Text>Loading...</Text>;
+        return <Text>Welcome, on this page you can see the tools that you have set up to rent out.</Text>;
     }
 
     const handleSelectTool = id => {
