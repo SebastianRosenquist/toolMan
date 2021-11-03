@@ -10,20 +10,22 @@ import Add_edit_Tool from "./Components/Add_edit_Tool";
 import ToolDetails from "./Components/ToolDetails";
 import SearchTool from "./Components/SearchTool";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import TabNavigator from "./Components/Navigators/TabNavigator";
 
 export default function App() {
 
+    /*
   const Stack = createStackNavigator();
-  const Tab = createBottomTabNavigator();
+  const Tab = createBottomTabNavigator();*/
 
   const firebaseConfig = {
-        apiKey: "AIzaSyDyilxsV2j9PhYgBYobp58O19Ps4YAodNA",
-        authDomain: "toolman-d0bd2.firebaseapp.com",
-        databaseURL: "https://toolman-d0bd2-default-rtdb.europe-west1.firebasedatabase.app",
-        projectId: "toolman-d0bd2",
-        storageBucket: "toolman-d0bd2.appspot.com",
-        messagingSenderId: "500755517934",
-        appId: "1:500755517934:web:f444482ffa1347abb1beff"
+      apiKey: "AIzaSyDcwn5RjQKs0M2tWk360oPacpUdL8jH3jw",
+      authDomain: "toolmantwo-3cd62.firebaseapp.com",
+      databaseURL: "https://toolmantwo-3cd62-default-rtdb.europe-west1.firebasedatabase.app",
+      projectId: "toolmantwo-3cd62",
+      storageBucket: "toolmantwo-3cd62.appspot.com",
+      messagingSenderId: "621004841089",
+      appId: "1:621004841089:web:18d5cf6796f7f8d1d22d80"
   };
 
 
@@ -34,6 +36,8 @@ export default function App() {
     firebase.initializeApp(firebaseConfig);
   }
 
+
+/*
   const StackNavigation = () => {
     return(
         <Stack.Navigator>
@@ -53,7 +57,11 @@ export default function App() {
           </Tab.Navigator>
       </NavigationContainer>
   );
+*/
 
+    return (
+        <TabNavigator/>
+    )
   /*return (
     <View style={styles.container}>
 
