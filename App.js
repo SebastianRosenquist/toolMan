@@ -43,6 +43,9 @@ export default function App() {
     firebase.initializeApp(firebaseConfig);
   }
 
+    return (
+        <TabNavigator/>
+    )
 
 /*
   const StackNavigation = () => {
@@ -77,9 +80,6 @@ export default function App() {
         </NavigationContainer>
     );*/
 
-    return (
-        <TabNavigator/>
-    )
   /*return (
     <View style={styles.container}>
 
