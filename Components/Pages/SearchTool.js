@@ -5,6 +5,7 @@ import {useEffect, useState} from "react";
 
 const SearchTool = (props) => {
 
+
     return (
         <View style={styles.container}>
             <Text>

@@ -1,6 +1,6 @@
-import ToolList from "../ToolList";
-import ToolDetails from "../ToolDetails";
-import Add_edit_Tool from "../Add_edit_Tool";
+import ToolList from "../Pages/ToolList";
+import ToolDetails from "../Pages/ToolDetails";
+import Add_edit_Tool from "../Pages/Add_edit_Tool";
 import React from "react";
 import {createStackNavigator} from "@react-navigation/stack";
 
