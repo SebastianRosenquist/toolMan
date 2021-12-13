@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {View, Text, StyleSheet, TextInput, Button, Alert, ScrollView, SafeAreaView,} from 'react-native';
-import firebase from 'firebase';
+//import firebase from 'firebase';
+import { auth, db } from '../../firebase';
 import {useEffect, useState} from "react";
 
 const Add_edit_Tool = ({navigation,route}) => {
@@ -9,7 +10,8 @@ const Add_edit_Tool = ({navigation,route}) => {
         type: '',
         model: '',
         duration: '',
-        price: ''
+        price: '',
+        description: ''
     }
 
     const [newTool,setNewTool] = useState(initialState);
@@ -34,17 +36,16 @@ const Add_edit_Tool = ({navigation,route}) => {
 
     const handleSave = () => {
 
-        const { type, model, duration, price } = newTool;
+        const { type, model, duration, price, description } = newTool;
 
-        if(type.length === 0 || model.length === 0 || duration.length === 0 || price.length === 0 ){
+        if(type.length === 0 || model.length === 0 || duration.length === 0 || price.length === 0 || description.length === 0 ){
             return Alert.alert('One of your fields is empty!');
         }
 
         if(isEditTool){
             const id = route.params.tool[0];
             try {
-                firebase
-                    .database()
+                db
                     .ref(`/Tools/${id}`)
                     // Vi bruger update, så kun de felter vi angiver, bliver ændret
                     .update({ type, model, duration, price });
@@ -59,10 +60,9 @@ const Add_edit_Tool = ({navigation,route}) => {
         }else{
 
             try {
-                firebase
-                    .database()
+                db
                     .ref('/Tools/')
-                    .push({ type, model, duration, price });
+                    .push({ type, model, duration, price, description });
                 Alert.alert(`Saved`);
                 setNewTool(initialState)
             } catch (error) {

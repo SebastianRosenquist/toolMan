@@ -161,7 +161,7 @@ function ToolMap() {
 }
 
 
-//Lokal styling til brug i App.js
+//Lokal styling til brug i ToolMap.js
 const styles = StyleSheet.create({
     container: {
         flex: 1,

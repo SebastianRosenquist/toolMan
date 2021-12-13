@@ -14,10 +14,16 @@ import ToolDetails from "./Components/Pages/ToolDetails";
 import SearchTool from "./Components/Pages/SearchTool";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import TabNavigator from "./Components/Navigators/TabNavigator";
+import LoginPage from "./Components/login/LoginPage";
+import SignupPage from "./Components/login/SignupPage";
 import StackNav from "./Components/Navigators/StackNavigator";
 import { AntDesign,Entypo } from '@expo/vector-icons';
 import BioScreen from "./Components/BioScreen";
 import GoogleScreen from "./Components/GoogleScreen";
+
+import { LogBox } from 'react-native';
+
+LogBox.ignoreLogs(['Setting a timer']);
 
 export default function App() {
 
@@ -25,27 +31,72 @@ export default function App() {
   const Stack = createStackNavigator();
   const Tab = createBottomTabNavigator();
 
-  const firebaseConfig = {
-      apiKey: "AIzaSyDcwn5RjQKs0M2tWk360oPacpUdL8jH3jw",
-      authDomain: "toolmantwo-3cd62.firebaseapp.com",
-      databaseURL: "https://toolmantwo-3cd62-default-rtdb.europe-west1.firebasedatabase.app",
-      projectId: "toolmantwo-3cd62",
-      storageBucket: "toolmantwo-3cd62.appspot.com",
-      messagingSenderId: "621004841089",
-      appId: "1:621004841089:web:18d5cf6796f7f8d1d22d80"
-  };
-
-
-  // Vi kontrollerer at der ikke allerede er en initialiseret instans af firebase
-  // Så undgår vi fejlen Firebase App named '[DEFAULT]' already exists (app/duplicate-app).
-
-  if (!firebase.apps.length) {
-    firebase.initializeApp(firebaseConfig);
-  }
-
+    // Stacknavigator, that uses the TabNavigator component to navigate between screens in the bottom.
     return (
-        <TabNavigator/>
-    )
+        <NavigationContainer>
+            <Stack.Navigator>
+                <Stack.Screen
+                    options={{ headerShown: false }}
+                    name="Login"
+                    component={LoginPage}
+                />
+                <Stack.Screen
+                    options={{ headerShown: false }}
+                    name="Register"
+                    component={SignupPage}
+                />
+                <Stack.Screen
+                    options={{ headerShown: false }}
+                    name="HomeScreen"
+                    component={TabNavigator}
+                />
+            </Stack.Navigator>
+        </NavigationContainer>
+    );
+}
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#FFFBFF',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /* const firebaseConfig = {
+       apiKey: "AIzaSyDcwn5RjQKs0M2tWk360oPacpUdL8jH3jw",
+       authDomain: "toolmantwo-3cd62.firebaseapp.com",
+       databaseURL: "https://toolmantwo-3cd62-default-rtdb.europe-west1.firebasedatabase.app",
+       projectId: "toolmantwo-3cd62",
+       storageBucket: "toolmantwo-3cd62.appspot.com",
+       messagingSenderId: "621004841089",
+       appId: "1:621004841089:web:18d5cf6796f7f8d1d22d80"
+   };
+
+
+   // Vi kontrollerer at der ikke allerede er en initialiseret instans af firebase
+   // Så undgår vi fejlen Firebase App named '[DEFAULT]' already exists (app/duplicate-app).
+
+   if (!firebase.apps.length) {
+     firebase.initializeApp(firebaseConfig);
+   }*/
+
+
+
+
 
 /*
   const StackNavigation = () => {
@@ -97,4 +148,3 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   }, */
-}

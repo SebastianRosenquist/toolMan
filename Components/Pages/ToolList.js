@@ -1,7 +1,7 @@
 
 import * as React from 'react';
 import {View, Text, FlatList, TouchableOpacity, StyleSheet} from 'react-native';
-import firebase from 'firebase';
+import { auth, db } from '../../firebase';
 import {useEffect, useState} from "react";
 
 const ToolList = ({navigation}) => {
@@ -10,8 +10,7 @@ const ToolList = ({navigation}) => {
 
     useEffect(() => {
         if(!tools) {
-            firebase
-                .database()
+            db
                 .ref('/Tools')
                 .on('value', snapshot => {
                     setTools(snapshot.val())
