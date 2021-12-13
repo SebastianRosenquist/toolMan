@@ -1,6 +1,7 @@
 
 import * as React from 'react';
 import { View, Text, Platform, FlatList, StyleSheet, Button, Alert } from 'react-native';
+import {auth, db} from "firebase";
 import firebase from 'firebase';
 import {useEffect, useState} from "react";
 
@@ -39,8 +40,7 @@ const ToolDetails = ({route,navigation}) => {
     const  handleDelete = () => {
         const id = route.params.tool[0];
         try {
-            firebase
-                .database()
+            db
                 // Vi sætter værktøjet ID ind i stien
                 .ref(`/Tools/${id}`)
                 // Og fjerner data fra den sti

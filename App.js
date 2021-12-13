@@ -18,9 +18,8 @@ import LoginPage from "./Components/login/LoginPage";
 import SignupPage from "./Components/login/SignupPage";
 import StackNav from "./Components/Navigators/StackNavigator";
 import { AntDesign,Entypo } from '@expo/vector-icons';
-import BioScreen from "./Components/BioScreen";
-import GoogleScreen from "./Components/GoogleScreen";
 
+// Setting expo to ignore the timer warning
 import { LogBox } from 'react-native';
 
 LogBox.ignoreLogs(['Setting a timer']);

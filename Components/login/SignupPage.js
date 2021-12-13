@@ -63,10 +63,10 @@ const LoginScreen = ({ navigation }) => {
         >
             <View style={styles.inputContainer}>
                 <Text style={styles.header}>
-                    Welcome to RideSaver, please register!
+                    Welcome to ToolMan
                 </Text>
                 <Text style={styles.buttonOutlineText}>
-                    Use your company email when signing up!
+                    Please input your desired credentials to signup.
                 </Text>
                 <TextInput
                     placeholder="Name"

@@ -52,15 +52,15 @@ const LoginScreen = ({ navigation }) => {
             <View style={styles.inputContainer}>
                 <View style={{ justifyContent: 'center', alignItems: 'center' }}>
                     <Image
-                        source={require('../../assets/Logo.png')}
+                        source={require('../../assets/ToolManLogo2.png')}
                         style={{
-                            height: 64,
+                            height: 300,
                             width: 456,
                             margin: 10,
                         }}
                     />
                 </View>
-                <Text style={styles.header}>Welcome to RideSaver, please log in!</Text>
+                <Text style={styles.header}>Welcome to ToolMan, please log in!</Text>
                 <TextInput
                     placeholder="Email"
                     value={email}
