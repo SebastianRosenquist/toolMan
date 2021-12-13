@@ -6,7 +6,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import ProfileScreen from '../Pages/TestPage';
 import { auth, db } from '../../firebase';
 import { Button } from 'react-native';
-import MapScreen from '../Pages/ToolMap';
+import MapScreen from '../Pages/MapPage';
 import { GlobalStyles, BrandColors } from '../../styles/GlobalStyles';
 import InfoScreen from '../Pages/InfoPage';
 import SearchTool from "../Pages/SearchTool";
