@@ -32,7 +32,7 @@ const InfoScreen = () => {
                 </View>
                 <View style={GlobalStyles.collumnView}>
                     <View
-                        style={{ flexDirection: 'row', alignItems: 'center', margin: 5 }}
+                        style={{ flexDirection: 'row', alignItems: 'center', margin: 20 }}
                     >
                         {/*<Image
                             style={GlobalStyles.pin}

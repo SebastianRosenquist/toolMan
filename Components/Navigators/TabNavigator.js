@@ -9,6 +9,7 @@ import { Button } from 'react-native';
 import MapScreen from '../Pages/ToolMap';
 import { GlobalStyles, BrandColors } from '../../styles/GlobalStyles';
 import InfoScreen from '../Pages/InfoPage';
+import SearchTool from "../Pages/SearchTool";
 
 const Tab = createBottomTabNavigator();
 
@@ -120,6 +121,28 @@ const TabNavigator = ({ navigation }) => {
                     tabBarIcon: ({ focused }) => (
                         <Ionicons
                             name="globe"
+                            color={
+                                focused ? BrandColors.PrimaryLight : BrandColors.PrimaryDark
+                            }
+                            size={20}
+                        />
+                    ),
+                }}
+            />
+            <Tab.Screen
+                name="Search"
+                component={SearchTool}
+                initialParams={{ group: group }}
+                options={{
+                    headerTintColor: BrandColors.White,
+                    headerTitleAlign: 'center',
+                    headerStyle: {
+                        backgroundColor: BrandColors.PrimaryDark,
+                    },
+                    headerRight: () => LogoutButton(),
+                    tabBarIcon: ({ focused }) => (
+                        <Ionicons
+                            name="search"
                             color={
                                 focused ? BrandColors.PrimaryLight : BrandColors.PrimaryDark
                             }
