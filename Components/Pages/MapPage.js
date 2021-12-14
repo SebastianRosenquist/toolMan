@@ -84,7 +84,7 @@ const MapScreen = ({ route }) => {
                         if (coordinate.val().groupId == groupid) {
                             let newObj = {
                                 id: coordinate.key,
-                                availableSeats: coordinate.val().availableSeats,
+                                availableTools: coordinate.val().availableTools,
                                 date: coordinate.val().date,
                                 groupId: coordinate.val().groupId,
                                 latitude: coordinate.val().latitude,
@@ -256,7 +256,7 @@ const MapScreen = ({ route }) => {
                     let isUserjoined = !coordinate.userjoined
                         ? null
                         : coordinate.userjoined[auth.currentUser.uid];
-                    if (coordinate.availableSeats > 0 || isUserjoined) {
+                    if (coordinate.availableTools > 0 || isUserjoined) {
                         return (
                             <Marker
                                 title={dateString}

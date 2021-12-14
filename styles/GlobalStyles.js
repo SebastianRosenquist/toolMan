@@ -2,8 +2,8 @@ import { StyleSheet } from 'react-native';
 
 export const BrandColors = {
     //60%
-    PrimaryDark: '#081F2E', // Text color: All whites, Two lightest secondary
-    Primary: '#1B4965', // Text color: Two lightest whites, lightest secondary
+    PrimaryDark: '#302B28', // Text color: All whites, Two lightest secondary
+    Primary: '#FCEAD9', // Text color: Two lightest whites, lightest secondary
     PrimaryLight: '#34769E', // Text color: Lightest whites, darkest greys
 
     //30%

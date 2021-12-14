@@ -10,7 +10,7 @@ const CoordinateDetailsModal = ({ isOpen, handleClose, coordinate }) => {
     const initialState = {
         address: '',
         date: '',
-        availableSeats: '',
+        availableTools: '',
         description: '',
     };
     const [joinedUsers, setjoinedUsers] = useState([]);
@@ -34,11 +34,11 @@ const CoordinateDetailsModal = ({ isOpen, handleClose, coordinate }) => {
         }
         // To edit the coordinate we request the id from firebase and use .update to update the attributes of the initalState object
         // We also substract one from available seats, cause we now have a new user. We could have userjoined and then substract that from availble seats.
-        coordinate.availableSeats -= 1;
+        coordinate.availableTools -= 1;
         try {
             db.ref(`coordinates/${id}`)
                 // Only choosen fields will be updated
-                .update({ availableSeats: coordinate.availableSeats });
+                .update({ availableTools: coordinate.availableTools });
             // Alert after updating info
             Alert.alert(`You asked to rent this Tool: ${coordinate.description}`);
         } catch (error) {
@@ -68,15 +68,15 @@ const CoordinateDetailsModal = ({ isOpen, handleClose, coordinate }) => {
             return Alert.alert('This is your rental');
         }
 
-        if (coordinate.availableSeats == 0) {
+        if (coordinate.availableTools == 0) {
             return Alert.alert('This Tool has already been rented');
         }
 
-        coordinate.availableSeats += 1;
+        coordinate.availableTools += 1;
         try {
             db.ref(`coordinates/${id}`)
                 // Only choosen fields will be updated
-                .update({ availableSeats: coordinate.availableSeats });
+                .update({ availableTools: coordinate.availableTools });
             // Alert after updating info
             Alert.alert(`You asked to rent this Tool: ${coordinate.description}`);
         } catch (error) {

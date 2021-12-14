@@ -20,7 +20,7 @@ const EditCoordinateModal = ({ isOpen, handleClose, coordinate }) => {
     const initialState = {
         address: '',
         date: '',
-        availableSeats: '',
+        availableTools: '',
         //description: '',
     };
     // Here we take in the different variables we want to use
@@ -73,13 +73,13 @@ const EditCoordinateModal = ({ isOpen, handleClose, coordinate }) => {
         //Gets the variables we need. Lat and long are included for future use, but will always be the value of the pressed coordinate
         const date = userDate;
         const id = newCoordinate.id;
-        const { availableSeats } = newCoordinate;
+        const { availableTools } = newCoordinate;
         const { latitude, longitude } = coordinate;
         if (
             latitude.length === 0 ||
             latitude.length === 0 ||
             date.length === 0 ||
-            availableSeats.length === 0
+            availableTools.length === 0
         ) {
             return Alert.alert('Error with input');
         }
@@ -89,7 +89,7 @@ const EditCoordinateModal = ({ isOpen, handleClose, coordinate }) => {
         try {
             db.ref(`coordinates/${id}`)
                 // Only choosen fields will be updated
-                .update({ latitude, longitude, date, availableSeats });
+                .update({ latitude, longitude, date, availableTools });
             // Alert after updating info, this only updates lat and long, address cannot be edited yet.
             Alert.alert('Your info has been updated');
         } catch (error) {

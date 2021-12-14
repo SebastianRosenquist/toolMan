@@ -28,7 +28,7 @@ const AddCoordinateModal = ({
     const [userDate, setUserDate] = useState(new Date());
     const [mode, setMode] = useState('date');
     const [show, setShow] = useState(false);
-    const [availableSeats, setAvailableSeats] = useState();
+    const [availableTools, setAvailableTools] = useState();
     const [description, setDescription] = useState()
 
     //Get the mode to show in date picker, depending if you press change time or date
@@ -57,7 +57,7 @@ const AddCoordinateModal = ({
                 longitude: coordinate.longitude,
                 address: address,
                 userid: auth.currentUser.uid,
-                availableSeats: availableSeats,
+                availableTools: availableTools,
                 description: description,
                 groupId: group,
                 date: newDate,
@@ -159,9 +159,9 @@ const AddCoordinateModal = ({
                 <Text style={{ fontWeight: 'bold', marginTop: 5 }}>Please indicate how many tools you have available to rent out (default=1): </Text>
                 <TextInput
                     style={GlobalStyles.input}
-                    onChangeText={setAvailableSeats}
+                    onChangeText={setAvailableTools}
                     defaultValue={'1'}
-                    value={availableSeats}
+                    value={availableTools}
                     placeholder="Please indicate how many tools you have available to rent out"
                     keyboardType="default"
                 />
