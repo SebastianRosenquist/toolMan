@@ -125,9 +125,9 @@ const MapScreen = ({ route }) => {
     //Change the pin color depending on if the logged in user created it or not
     const getPinColor = (userid) => {
         if (userid == auth.currentUser.uid) {
-            return 'blue';
+            return 'violet';
         } else {
-            return 'red';
+            return 'green';
         }
     };
 

@@ -10,6 +10,8 @@ import MapScreen from '../Pages/MapPage';
 import { GlobalStyles, BrandColors } from '../../styles/GlobalStyles';
 import InfoScreen from '../Pages/InfoPage';
 import SearchTool from "../Pages/SearchTool";
+import ProfilePage from '../Pages/ProfilePage';
+
 
 const Tab = createBottomTabNavigator();
 
@@ -53,7 +55,7 @@ const TabNavigator = ({ navigation }) => {
                                 .catch((error) => alert(error.message));
                         }}
                         title="Logout"
-                        color={BrandColors.PrimaryLight}
+                        color={BrandColors.Secondary}
                     />
                 </View>
             );
@@ -87,7 +89,7 @@ const TabNavigator = ({ navigation }) => {
                 }}
             />
             <Tab.Screen
-                name="Profile"
+                name="Tool Group"
                 component={ProfileScreen}
                 options={{
                     headerTintColor: BrandColors.White,
@@ -98,7 +100,7 @@ const TabNavigator = ({ navigation }) => {
                     headerRight: () => LogoutButton(),
                     tabBarIcon: ({ focused }) => (
                         <Ionicons
-                            name="person-circle-outline"
+                            name="hammer-outline"
                             color={
                                 focused ? BrandColors.PrimaryLight : BrandColors.PrimaryDark
                             }
@@ -143,6 +145,28 @@ const TabNavigator = ({ navigation }) => {
                     tabBarIcon: ({ focused }) => (
                         <Ionicons
                             name="search"
+                            color={
+                                focused ? BrandColors.PrimaryLight : BrandColors.PrimaryDark
+                            }
+                            size={20}
+                        />
+                    ),
+                }}
+            />
+            <Tab.Screen
+                name="Profile"
+                component={ProfilePage}
+                initialParams={{ group: group }}
+                options={{
+                    headerTintColor: BrandColors.White,
+                    headerTitleAlign: 'center',
+                    headerStyle: {
+                        backgroundColor: BrandColors.PrimaryDark,
+                    },
+                    headerRight: () => LogoutButton(),
+                    tabBarIcon: ({ focused }) => (
+                        <Ionicons
+                            name="person-circle-outline"
                             color={
                                 focused ? BrandColors.PrimaryLight : BrandColors.PrimaryDark
                             }

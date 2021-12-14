@@ -2,18 +2,18 @@ import { StyleSheet } from 'react-native';
 
 export const BrandColors = {
     //60%
-    PrimaryDark: '#302B28', // Text color: All whites, Two lightest secondary
-    Primary: '#FCEAD9', // Text color: Two lightest whites, lightest secondary
-    PrimaryLight: '#34769E', // Text color: Lightest whites, darkest greys
+    PrimaryDark: '#333333', // Text color: All whites, Two lightest secondary
+    Primary: '#C2B3A6', // Text color: Two lightest whites, lightest secondary
+    PrimaryLight: '#FEE9D7', // Text color: Lightest whites, darkest greys
 
     //30%
-    SecondaryDark: '#33A34E', // Text color: Ligthest white, darkest greys, darkest primary
-    Secondary: '#64EE85', // Text color: Darkest primary, darkest grey
-    SecondaryLight: '#A3FFB9', // Text color: Two darkest primaries, two darkest greys
+    SecondaryDark: '#5F5954', // Text color: Ligthest white, darkest greys, darkest primary
+    Secondary: '#A68F7C', // Text color: Darkest primary, darkest grey
+    SecondaryLight: '#FCB77C', // Text color: Two darkest primaries, two darkest greys
 
     //10%
     GreyDark: '#1F2224', // Text color: All whites, two ligthestes secondaries, ligthest primary
-    Grey: '#42484D', // Text color: ligthest white, two lightest secondaries
+    Grey: '#776F69', // Text color: ligthest white, two lightest secondaries
     GreyLight: '#636B73', // Text color: Ligthest secondary, lightest white
 
     //10%

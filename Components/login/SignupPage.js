@@ -98,7 +98,7 @@ const LoginScreen = ({ navigation }) => {
                 </TouchableOpacity>
 
                 <TouchableOpacity onPress={handleLogin} style={styles.button}>
-                    <Text style={styles.buttonText}>Login</Text>
+                    <Text style={styles.buttonText}>Login Here</Text>
                 </TouchableOpacity>
             </View>
         </KeyboardAvoidingView>

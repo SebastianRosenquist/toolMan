@@ -85,7 +85,7 @@ const LoginScreen = ({ navigation }) => {
                     onPress={handleRegister}
                     style={[styles.button, styles.buttonOutline]}
                 >
-                    <Text style={styles.buttonOutlineText}>Register</Text>
+                    <Text style={styles.buttonOutlineText}>Register Here</Text>
                 </TouchableOpacity>
             </View>
         </KeyboardAvoidingView>
@@ -97,7 +97,7 @@ export default LoginScreen;
 const styles = StyleSheet.create({
     container: {
         ...GlobalStyles.container,
-        backgroundColor: BrandColors.Primary,
+        backgroundColor: BrandColors.PrimaryLight,
     },
     inputContainer: {
         width: '80%',
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         marginTop: 5,
         color: BrandColors.GreyDark,
-        borderColor: BrandColors.Secondary,
+        borderColor: BrandColors.PrimaryDark,
         borderWidth: 2,
     },
 
@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
         marginTop: 40,
     },
     button: {
-        backgroundColor: BrandColors.PrimaryLight,
+        backgroundColor: BrandColors.PrimaryDark,
         width: '100%',
         padding: 15,
         borderRadius: 10,
@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
     },
 
     buttonOutline: {
-        backgroundColor: BrandColors.WhiteLight,
+        backgroundColor: BrandColors.SecondaryLight,
         marginTop: 5,
         borderColor: BrandColors.PrimaryLight,
         borderWidth: 2,
@@ -149,6 +149,6 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         paddingBottom: 20,
         fontSize: 18,
-        color: BrandColors.WhiteLight,
+        color: BrandColors.PrimaryDark,
     },
 });

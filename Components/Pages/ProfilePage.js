@@ -61,37 +61,18 @@ const TestPage = () => {
     // If a user is logged in they will se this screen with their email
     return (
         <View style={GlobalStyles.container}>
-            <Text style={GlobalStyles.header}>Tool Group screen</Text>
+            <Text style={GlobalStyles.header}>Welcome User!</Text>
             <Text style={{ color: BrandColors.Primary, margin: 5 }}>
-                Hello, you are logged in as:{' '}
+                This is your profile page, and you are logged in as:{' '}
                 {firebase.auth().currentUser.email}
-                {' '}Remember, that all tools you create are made under this profile
             </Text>
             <Text style={{ margin: 5 }}>
-                This page illustrates how the app divides users into groups of tools. Press one
-                of the groups below, go to the map screen and update, to see where these tools can
-                be rented.
-                Right now, these groups are hardcoded in the database. In future iterations, this will
-                be something users can add.
-                It will also show locations of specific hardware stores that have these tools.
+                This page will in future iterations have all the relevant information about
+                your profile. Here you will be able to see you what you are renting out, who
+                has rented it, and where they are renting from. Once someone has asked to
+                rent your item, or if you are renting an item, you will be able to chat with
+                said person about said item.
             </Text>
-            <FlatList
-                data={groupArray}
-                // We use groupKeys to find by ID
-                keyExtractor={(item, index) => groupKeys[index]}
-                renderItem={({ item, index }) => {
-                    return (
-                        <TouchableOpacity
-                            style={GlobalStyles.container}
-                            onPress={() => handleSelectGroup(groupKeys[index])}
-                        >
-                            <Text style={{ color: BrandColors.Grey }}>
-                                {item.toolGroup}
-                            </Text>
-                        </TouchableOpacity>
-                    );
-                }}
-            />
         </View>
     );
 };
