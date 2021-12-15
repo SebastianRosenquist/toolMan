@@ -1,11 +1,11 @@
-// Importing modules and firebase to acces data
+//Import af Pages og Components
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, Platform, Button, Alert } from 'react-native';
 import { auth, db } from '../../firebase';
 import Modal from 'react-native-modal';
 import { GlobalStyles, BrandColors } from '../../styles/GlobalStyles';
 
-// Passed  which are deconstructed to acces navigation and route
+// Vi henter vores inital states af de vi ønsker at presentere i vores modal
 const CoordinateDetailsModal = ({ isOpen, handleClose, coordinate }) => {
     const initialState = {
         address: '',
@@ -15,87 +15,88 @@ const CoordinateDetailsModal = ({ isOpen, handleClose, coordinate }) => {
     const [joinedUsers, setjoinedUsers] = useState([]);
     const [nameOfUser, setnameOfUser] = useState([]);
 
-    // We find a Users name, depending on the userid on the coordinate.
+    // Vin finder et username på det userId som er tilknyttet det valgte koordinat
     useEffect(() => {
         getUserName(coordinate.userid);
-        //Here we find the joined users, which are on the coordinate, which is not used right now, but is supposed to be showing in this modal
+        //Her finder vi den/de bruger som har ønsket at leje på det koordinat. Det er dog ikke færdigkodet.
         if (coordinate.userjoined) {
             setjoinedUsers(Object.keys(coordinate.userjoined));
         }
     }, [isOpen]);
 
-    //This functions joins the logged in user on the coordinate.
-    const handleJoinRide = () => {
+    //Vi skaber en funktion der skal tilknytte en bruger med et udlejnings-koordinat
+    const handleAskRental = () => {
         const id = coordinate.id;
 
         if (coordinate.userid == auth.currentUser.uid) {
             return Alert.alert('This is your Tool-rental');
         }
-        // To edit the coordinate we request the id from firebase and use .update to update the attributes of the initalState object
-        // We also substract one from available seats, cause we now have a new user. We could have userjoined and then substract that from availble seats.
+        // For at redigere koordinatet, sender vi et id request til firebase og bruge .update til at opdatere attributtet
+        // af vores initialState objekt.
+        // Vi trækker også 1 fra vores availableTools for at vise at der nu er udlejet et værktøj fra det koordinat.
         coordinate.availableTools -= 1;
         try {
             db.ref(`coordinates/${id}`)
-                // Only choosen fields will be updated
+                // Kun de valgte værdiere opdateres
                 .update({ availableTools: coordinate.availableTools });
-            // Alert after updating info
+            // En alert til at informere user
             Alert.alert(`You asked to rent this Tool: ${coordinate.description}`);
         } catch (error) {
             Alert.alert(`Error: ${error.message}`);
         }
 
-        //Here we throw in userjoined into the coordinate, this could also be done in the one above.
+        //Vi indsætter en userJoined ind i vores koordinater objekt. Så kan vi se at der er en eller flere som
+        //er tilknyttet dette værktøj.
         try {
             db.ref(`coordinates/${id}/userjoined/` + auth.currentUser.uid)
-                // we set the userjoined/:id to true, so that user is now joined the ride.
+                //userjoined/:id sættes til true. Dermed er en user sat på værktøjet
                 .set({ 0: true });
 
             Alert.alert(`You asked to rent this Tool: ${coordinate.description}`);
         } catch (error) {
             Alert.alert(`Error: ${error.message}`);
         }
-        //Close the modal
+        //Vi lukker vores modal
         handleClose();
     };
 
-    //This functions handles when a user who is already joined wants to unjoin
-    const handleRemoveRide = () => {
+    //Denne funktion muligøre at man kan afbestille ens udlejning. Den driller stadig lidt og vi arbejder på det.
+    const handleCancelRental = () => {
         const id = coordinate.id;
 
-        // These to ifs should never pop, but they are their if it happens.
+       /*
+        Prøvet at indsætte disse til at fange problemer. Det viser sig at de skaber problemer selv
         if (coordinate.userid == auth.currentUser.uid) {
             return Alert.alert('This is your rental');
         }
 
         if (coordinate.availableTools == 0) {
             return Alert.alert('This Tool has already been rented');
-        }
+        }*/
 
         coordinate.availableTools += 1;
         try {
             db.ref(`coordinates/${id}`)
-                // Only choosen fields will be updated
                 .update({ availableTools: coordinate.availableTools });
-            // Alert after updating info
-            Alert.alert(`You asked to rent this Tool: ${coordinate.description}`);
+            Alert.alert(`You asked to cancel your rental of this Tool: ${coordinate.description}`);
         } catch (error) {
             Alert.alert(`Error: ${error.message}`);
         }
 
         try {
             db.ref(`coordinates/${id}/userjoined/` + auth.currentUser.uid)
-                // We remove the key in userjoined, which is the currentuser, so now the userjoined key object, does not have our user anymore
+                // Vi fjerner vores userjoined, så det virker som om værktøjet er ledig igen.
                 .remove();
-            // Alert after updating info
+            // Kalder en alert
             Alert.alert('You cancelled your Tool-rental');
         } catch (error) {
             Alert.alert(`Error: ${error.message}`);
         }
-        //Close the modal
+        //Vi lukker vores modal
         handleClose();
     };
 
-    //Here we go in userData and get the Name of the user who made the coordinate.
+    //Vi henter username på den user som har oprettet rental. Dette hentes fra userData.
     const getUserName = async (id) => {
         let name;
         await db
@@ -115,7 +116,7 @@ const CoordinateDetailsModal = ({ isOpen, handleClose, coordinate }) => {
         setnameOfUser(name);
     };
 
-    // If no coordinate it shows this
+    // Hvis der ingen koordinater er, vises følgende:
     if (!coordinate) {
         return (
             <Modal
@@ -136,7 +137,8 @@ const CoordinateDetailsModal = ({ isOpen, handleClose, coordinate }) => {
         );
     }
 
-    //if the current user is in joined users, which is the joined users key, then you can cancel else you can join.
+    //Hvis man er den user som har ønsket at leje et værktøj, som ses i joinedUserKey, så kan man cancel sin udlejning.
+    //Hvis ikke, kan man ønske at leje værktøjet.
     const buttons = () => {
         if (joinedUsers.includes(auth.currentUser.uid)) {
             return (
@@ -144,7 +146,7 @@ const CoordinateDetailsModal = ({ isOpen, handleClose, coordinate }) => {
                     <Button
                         title="Cancel your Tool-rental"
                         color={BrandColors.Primary}
-                        onPress={() => handleRemoveRide()}
+                        onPress={() => handleCancelRental()}
                     />
                 </View>
             );
@@ -154,14 +156,14 @@ const CoordinateDetailsModal = ({ isOpen, handleClose, coordinate }) => {
                     <Button
                         title="Ask for rental of this tool"
                         color={BrandColors.Primary}
-                        onPress={() => handleJoinRide()}
+                        onPress={() => handleAskRental()}
                     />
                 </View>
             );
         }
     };
 
-    //Here we return the modal.
+    //Vi returnere vores modal
     return (
         <Modal
             visible={isOpen}
@@ -174,8 +176,7 @@ const CoordinateDetailsModal = ({ isOpen, handleClose, coordinate }) => {
             <View style={styles.modalView}>
                 <Text style={{ fontWeight: 'bold' }}> Rentee: {nameOfUser} </Text>
                 {Object.keys(initialState).map((key, index) => {
-                    //We make different formating for different keys
-                    //We need more data when the key is a address
+                    //Vi nødt til at reformatere vores keys da vi skal bruge mere data når key er en adresse.
                     if (key == 'address') {
                         return (
                             <View style={styles.row} key={index}>
@@ -186,7 +187,7 @@ const CoordinateDetailsModal = ({ isOpen, handleClose, coordinate }) => {
                             </View>
                         );
                     } else if (key == 'date') {
-                        //The same here with date, it needs to be formatted to readable string
+                        //Med dato skal data være en læselig string
                         let formattedDate = new Date(Date.parse(coordinate[key]));
                         let dateString = `${formattedDate.toLocaleString('default', {
                             month: 'short',
