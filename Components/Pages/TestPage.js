@@ -65,12 +65,12 @@ const TestPage = () => {
             <Text style={{ color: BrandColors.Primary, margin: 5 }}>
                 Hello, you are logged in as:{' '}
                 {firebase.auth().currentUser.email}
-                {' '}Remember, that all tools you create are made under this profile
+                {' '}REMEMBER, that all tools you create are made under this profile
             </Text>
             <Text style={{ margin: 5 }}>
-                This page illustrates how the app divides users into groups of tools. Press one
-                of the groups below, go to the map screen and update, to see where these tools can
-                be rented.
+                On this page you can choose which Tool-Group you wish to search within.
+                Choose one of the groups, then go to the Map-view and refresh the map.
+                You will now be presented with a map of where that group of tools are available.
                 Right now, these groups are hardcoded in the database. In future iterations, this will
                 be something users can add.
                 It will also show locations of specific hardware stores that have these tools.

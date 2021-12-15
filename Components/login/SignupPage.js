@@ -110,7 +110,7 @@ export default LoginScreen;
 const styles = StyleSheet.create({
     container: {
         ...GlobalStyles.container,
-        backgroundColor: BrandColors.Secondary,
+        backgroundColor: BrandColors.SecondaryLight,
     },
     header: {
         ...GlobalStyles.header,
@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         marginTop: 5,
         color: BrandColors.GreyDark,
-        borderColor: BrandColors.Primary,
+        borderColor: BrandColors.PrimaryDark,
         borderWidth: 2,
     },
 
@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
         marginTop: 40,
     },
     button: {
-        backgroundColor: BrandColors.Primary,
+        backgroundColor: BrandColors.PrimaryDark,
         width: '100%',
         padding: 15,
         borderRadius: 10,
@@ -148,17 +148,17 @@ const styles = StyleSheet.create({
         backgroundColor: BrandColors.WhiteLight,
         marginTop: 5,
         marginBottom: 5,
-        borderColor: BrandColors.Primary,
+        borderColor: BrandColors.PrimaryDark,
         borderWidth: 2,
     },
 
     buttonText: {
-        color: BrandColors.WhiteLight,
+        color: BrandColors.SecondaryLight,
         fontWeight: '700',
         fontSize: 16,
     },
     buttonOutlineText: {
-        color: BrandColors.GreyDark,
+        color: BrandColors.PrimaryDark,
         fontWeight: '700',
         fontSize: 16,
     },

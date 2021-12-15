@@ -11,7 +11,6 @@ const CoordinateDetailsModal = ({ isOpen, handleClose, coordinate }) => {
         address: '',
         date: '',
         availableTools: '',
-        description: '',
     };
     const [joinedUsers, setjoinedUsers] = useState([]);
     const [nameOfUser, setnameOfUser] = useState([]);

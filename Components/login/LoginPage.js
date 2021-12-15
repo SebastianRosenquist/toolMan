@@ -8,6 +8,7 @@ import {
     TouchableOpacity,
     View,
     Image,
+    Alert
 } from 'react-native';
 import { auth } from '../../firebase';
 import { GlobalStyles, BrandColors } from '../../styles/GlobalStyles';
@@ -135,12 +136,12 @@ const styles = StyleSheet.create({
     },
 
     buttonText: {
-        color: BrandColors.WhiteLight,
+        color: BrandColors.PrimaryLight,
         fontWeight: '700',
         fontSize: 16,
     },
     buttonOutlineText: {
-        color: BrandColors.PrimaryLight,
+        color: BrandColors.PrimaryDark,
         fontWeight: '700',
         fontSize: 16,
     },

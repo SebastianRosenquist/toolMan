@@ -160,7 +160,7 @@ const AddCoordinateModal = ({
                 <TextInput
                     style={GlobalStyles.input}
                     onChangeText={setAvailableTools}
-                    defaultValue={'1'}
+                    //defaultValue={'1'}
                     value={availableTools}
                     placeholder="Please indicate how many tools you have available to rent out"
                     keyboardType="default"

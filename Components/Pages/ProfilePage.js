@@ -5,7 +5,7 @@ import {
     View,
     Text,
     FlatList,
-    TouchableOpacity,
+    TouchableOpacity, Image,
 } from 'react-native';
 import firebase from 'firebase';
 import { auth, db } from '../../firebase';
@@ -61,6 +61,16 @@ const TestPage = () => {
     // If a user is logged in they will se this screen with their email
     return (
         <View style={GlobalStyles.container}>
+            {/*<View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                <Image
+                    source={require('../../assets/ToolManLogo2.png')}
+                    style={{
+                        height: 300,
+                        width: 456,
+                        margin: 10,
+                    }}
+                />
+            </View>*/}
             <Text style={GlobalStyles.header}>Welcome User!</Text>
             <Text style={{ color: BrandColors.Primary, margin: 5 }}>
                 This is your profile page, and you are logged in as:{' '}
