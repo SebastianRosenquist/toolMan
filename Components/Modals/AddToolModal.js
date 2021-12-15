@@ -1,4 +1,4 @@
-// Import modules and firebase to access data from database
+//Import af Pages og Components
 import React, { useState, useEffect } from 'react';
 import {
     StyleSheet,
@@ -14,7 +14,7 @@ import Modal from 'react-native-modal';
 import { GlobalStyles, BrandColors } from '../../styles/GlobalStyles';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
-//Modal for use in Map Screen to make a coordinate.
+//Vores modal til at skabe koordinator på kortet
 const AddCoordinateModal = ({
                                 isOpen,
                                 handleClose,
@@ -23,35 +23,35 @@ const AddCoordinateModal = ({
                                 address,
                                 group,
                             }) => {
-    // Here we take in the different variables we want to use
-    // A userDate made from the data picker
+    //Her impotere vi de forskellige variabler vi ønsker at bruge
+    //userDate hentes fra date picker
     const [userDate, setUserDate] = useState(new Date());
     const [mode, setMode] = useState('date');
     const [show, setShow] = useState(false);
     const [availableTools, setAvailableTools] = useState();
     const [description, setDescription] = useState()
 
-    //Get the mode to show in date picker, depending if you press change time or date
+    //Hent metoden til at vise date-picker hvis man trykker ændre tid eller dato
     const showMode = (currentMode) => {
         setShow(true);
         setMode(currentMode);
     };
 
-    //For the date
-    const showDatepicker = () => {
-        showMode('date');
-    };
-
-    //For the time
+    //For tid
     const showTimepicker = () => {
         showMode('time');
     };
 
-    //This creates the ride
+    //For dato
+    const showDatepicker = () => {
+        showMode('date');
+    };
+
+    //Denne funktion skaber vores ToolRental
     const createToolRental = async (event) => {
         let newDate = userDate.toString();
         try {
-            //Here we push the new coordinate into the coordinate object.
+            //Vi pusher vores nye coordinater ind i vores coodinate objekt.
             db.ref('coordinates/').push({
                 latitude: coordinate.latitude,
                 longitude: coordinate.longitude,
@@ -61,8 +61,8 @@ const AddCoordinateModal = ({
                 description: description,
                 groupId: group,
                 date: newDate,
-                //Should deconstruct the address later, to only use the things we use.
-                address: {
+                address: { //Webstorm siger at der er en fejl her fordi vi har deklareret variablen 2 gange. Dog virker
+                            // det ligesom det gjorde i den video vi har set omkring react-native modal og maps.
                     city: address[0].city,
                     country: address[0].country,
                     district: address[0].district,
@@ -76,20 +76,20 @@ const AddCoordinateModal = ({
             Alert.alert(`Error: ${error.message}`);
         }
 
-        //Here we set the userMarker to null, so the yellow marker disappers
+        //Vi sætter vorse userMaker til null så vores midlertidig markør forsvinder
         setUserMarkerCoordinate(null);
-        //Here the modal is closed
+        //Vi lukker vores modal
         handleClose();
     };
 
-    //When changing the date, we set the date as userDate
+    //Når vi skal ændre vores dato, sætter vi vores dato til userDate
     const onChange = (event, selectedDate) => {
         const currentDate = selectedDate || userDate;
         setShow(Platform.OS === 'ios');
         setUserDate(currentDate);
     };
 
-    //If address is null, then we show a loading modal
+    //Hvis addressen ikke eksistere (returnere null), viser vi en loading modal
     if (!address) {
         return (
             <Modal
@@ -105,7 +105,7 @@ const AddCoordinateModal = ({
             </Modal>
         );
     }
-    //Here we return the modal which is seen in the MapScreen
+    //Her returnere vi den modal som vises på vores MapPage
     return (
         <Modal
             visible={isOpen}
@@ -161,8 +161,10 @@ const AddCoordinateModal = ({
                     style={GlobalStyles.input}
                     onChangeText={setAvailableTools}
                     //defaultValue={'1'}
+                    //Har forsøgt at sætte en default værdi - men dette skaber problemer hvis
+                    //ikke det er fyldt manuelt ud.
                     value={availableTools}
-                    placeholder="Please indicate how many tools you have available to rent out"
+                    placeholder="How many tools you have available to rent out"
                     keyboardType="default"
                 />
                 <Text style={{ fontWeight: 'bold', marginTop: 5 }}>What are you renting out? </Text>
@@ -170,7 +172,7 @@ const AddCoordinateModal = ({
                     style={GlobalStyles.input}
                     onChangeText={setDescription}
                     value={description}
-                    placeholder="Please describe the Tool you are renting out"
+                    placeholder="Describe the Tool you are renting out"
                     keyboardType="default"
                 />
                 <View style={{flexDirection: 'row'}}>

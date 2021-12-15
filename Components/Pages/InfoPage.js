@@ -1,8 +1,9 @@
-// Importing modules and components
+//Import af Pages og Components
 import React from 'react';
 import { View, Text, Image, ScrollView } from 'react-native';
 import { GlobalStyles, BrandColors } from '../../styles/GlobalStyles';
 
+//Vi opsætter en infoPage som skal fortælle brugeren hvordan vores app fungere
 const InfoScreen = () => {
     return (
         <ScrollView>
@@ -23,7 +24,7 @@ const InfoScreen = () => {
                         cancel your rental.
                     </Text>
                     <Text style={GlobalStyles.ul}>
-                        {'\u2B24'} A new tool is created by longpressing on where you wish to rent out the tool.
+                        {'\u2B24'} A new tool is created by longpressing on where you wish to rent out the tool from.
                     </Text>
                     <Text style={GlobalStyles.ul}>
                         {'\u2B24'} Info about Tools for rental can be accessed by pressing the pins on the

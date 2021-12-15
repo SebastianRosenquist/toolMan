@@ -1,3 +1,5 @@
+//En hardcoded database. Til når der var problemer med firebase og nettet. Ej i brug længere.
+
 export const DATA = {
     users:{
         user1:{

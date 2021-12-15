@@ -1,4 +1,4 @@
-// Importing modules and components
+//Import af Pages og Components
 import React, { useEffect, useState } from 'react';
 import {
     StyleSheet,
@@ -11,16 +11,18 @@ import firebase from 'firebase';
 import { auth, db } from '../../firebase';
 import { GlobalStyles, BrandColors } from '../../styles/GlobalStyles';
 
-// This is testscreen, currently used to showcase how the app function with different groups/organisations
-// For future iterations, users will automaticly grouped by their email address (which should be for the company/organisation)
-const TestPage = () => {
+//Dette er vores Tool-Group page. I fremtidige itteration vil man kunne
+//tilføje flere grupper af værktøj som man leder efter. Dette er stadig i en test/beta fase og er primært til
+//for at undersøge om det er et behov for brugeren at kunne filtrer på deres udlejnings map.
+
+const ToolGroupPage = () => {
     const [groups, setGroups] = useState();
 
     if (!firebase.auth().currentUser) {
         return (
             <View style={GlobalStyles.container}>
                 <Text>
-                    HEY! You should not have access to this site as you are not logged in
+                    Hey there. Seems as though you got access without logging in. Please let os know how you got here.
                 </Text>
             </View>
         );
@@ -58,10 +60,9 @@ const TestPage = () => {
     const groupArray = Object.values(groups);
     const groupKeys = Object.keys(groups);
 
-    // If a user is logged in they will se this screen with their email
     return (
         <View style={GlobalStyles.container}>
-            <Text style={GlobalStyles.header}>Tool Group screen</Text>
+            <Text style={GlobalStyles.header}>Your Tool Group Filter</Text>
             <Text style={{ color: BrandColors.Primary, margin: 5 }}>
                 Hello, you are logged in as:{' '}
                 {firebase.auth().currentUser.email}
@@ -77,7 +78,7 @@ const TestPage = () => {
             </Text>
             <FlatList
                 data={groupArray}
-                // We use groupKeys to find by ID
+                // Vi bruger groupKeys til at finde ved hjælp af ID
                 keyExtractor={(item, index) => groupKeys[index]}
                 renderItem={({ item, index }) => {
                     return (
@@ -96,4 +97,4 @@ const TestPage = () => {
     );
 };
 
-export default TestPage;
+export default ToolGroupPage;

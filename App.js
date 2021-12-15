@@ -2,24 +2,18 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useEffect} from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import firebase from "firebase";
 import {NavigationContainer} from "@react-navigation/native";
 import {createStackNavigator} from "@react-navigation/stack";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 
 // Vi importere vores pages
-import ToolList from "./Components/Pages/ToolList";
-import Add_edit_Tool from "./Components/Pages/Add_edit_Tool";
-import ToolDetails from "./Components/Pages/ToolDetails";
-import SearchTool from "./Components/Pages/SearchTool";
-import Ionicons from "react-native-vector-icons/Ionicons";
 import TabNavigator from "./Components/Navigators/TabNavigator";
 import LoginPage from "./Components/login/LoginPage";
 import SignupPage from "./Components/login/SignupPage";
 import StackNav from "./Components/Navigators/StackNavigator";
 import { AntDesign,Entypo } from '@expo/vector-icons';
 
-// Setting expo to ignore the timer warning
+// Vi sætter expo til at ignorrer "setting timer" warning. Den er super irriterende.
 import { LogBox } from 'react-native';
 
 LogBox.ignoreLogs(['Setting a timer']);
@@ -30,7 +24,8 @@ export default function App() {
   const Stack = createStackNavigator();
   const Tab = createBottomTabNavigator();
 
-    // Stacknavigator, that uses the TabNavigator component to navigate between screens in the bottom.
+
+  // Vores stacknavigator som bruger en TabNavigator komponent til at navigere mellem vores pages i bunden.
     return (
         <NavigationContainer>
             <Stack.Navigator>
@@ -66,14 +61,7 @@ const styles = StyleSheet.create({
 
 
 
-
-
-
-
-
-
-
-
+// Gammel kode der ikke benyttes. Kan slættes selvom det var god læring.
 
     /* const firebaseConfig = {
        apiKey: "AIzaSyDcwn5RjQKs0M2tWk360oPacpUdL8jH3jw",
@@ -92,9 +80,6 @@ const styles = StyleSheet.create({
    if (!firebase.apps.length) {
      firebase.initializeApp(firebaseConfig);
    }*/
-
-
-
 
 
 /*

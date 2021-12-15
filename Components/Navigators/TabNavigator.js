@@ -1,9 +1,9 @@
-// Importing modules, screens and components used for the bootom tab navigator
+//Import af Pages og Components
 import React, { useEffect, useState } from 'react';
 import { Image, View, TouchableWithoutFeedback, Alert } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import ProfileScreen from '../Pages/TestPage';
+import ToolGroupPage from '../Pages/ToolGroupPage';
 import { auth, db } from '../../firebase';
 import { Button } from 'react-native';
 import MapScreen from '../Pages/MapPage';
@@ -15,13 +15,13 @@ import ProfilePage from '../Pages/ProfilePage';
 
 const Tab = createBottomTabNavigator();
 
-// Is passed navigation as state
+// Vi passere navigation som en state da det er nødvendigt for at se om brugeren er loggedIn
 const TabNavigator = ({ navigation }) => {
-    // We set an initial state of loggedIn to false, to use firebase to check whether a user is logged in or not
+    // Vi sætter den initial state af loggedIn til falsk
     const [user, setUser] = useState({ loggedIn: false });
     const [group, setGroup] = useState();
 
-    // Check the login state of a user - This is code from firebase
+    // Check for at se om bruger er logget ind. Koden er taget direkte fra Firebase dokumentation
     function onAuthStateChange(callback) {
         return auth.onAuthStateChanged((user) => {
             if (user) {
@@ -32,7 +32,8 @@ const TabNavigator = ({ navigation }) => {
         });
     }
 
-    //useEffect hook, which listens for onAuthChanged to know if the user is active or not or unsubscribes them (log out)
+    //Her sætter vi en useEffect hook som lytter efter en onAuthChanged for at se om brugeren er aktiv ellers logger
+    //den dem ud.
     useEffect(() => {
         const unsubscribe = onAuthStateChange(setUser);
         return () => {
@@ -40,7 +41,8 @@ const TabNavigator = ({ navigation }) => {
         };
     }, []);
 
-    // The logout button is shown if a user is logged in and changes the loggedIn state if pressed, and navigates to homescreen
+    // Vores logout knap vises hvis en bruger er logget ind.
+    // Den ændre sin loggedIn state hvis den trykkes og navigere derefter til homeScreen
     const LogoutButton = () => {
         if (user.loggedIn) {
             return (
@@ -62,7 +64,6 @@ const TabNavigator = ({ navigation }) => {
         }
     };
 
-    //Show Homescreen, MapScreen and CoordinateStackNavigator regardless of loggedIn status
     return (
         <Tab.Navigator
             screenOptions={{ tabBarActiveTintColor: BrandColors.PrimaryLight }}
@@ -90,7 +91,7 @@ const TabNavigator = ({ navigation }) => {
             />
             <Tab.Screen
                 name="Tool Group"
-                component={ProfileScreen}
+                component={ToolGroupPage}
                 options={{
                     headerTintColor: BrandColors.White,
                     headerTitleAlign: 'center',

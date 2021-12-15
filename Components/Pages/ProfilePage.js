@@ -1,4 +1,4 @@
-// Importing modules and components
+//Import af Pages og Components
 import React, { useEffect, useState } from 'react';
 import {
     StyleSheet,
@@ -11,11 +11,11 @@ import firebase from 'firebase';
 import { auth, db } from '../../firebase';
 import { GlobalStyles, BrandColors } from '../../styles/GlobalStyles';
 
-// This is testscreen, currently used to showcase how the app function with different groups/organisations
-// For future iterations, users will automaticly grouped by their email address (which should be for the company/organisation)
-const TestPage = () => {
+
+const ProfilePage = () => {
     const [groups, setGroups] = useState();
 
+    //Hvis en bruger skulle komme ind uden at have logget ind.
     if (!firebase.auth().currentUser) {
         return (
             <View style={GlobalStyles.container}>
@@ -58,7 +58,8 @@ const TestPage = () => {
     const groupArray = Object.values(groups);
     const groupKeys = Object.keys(groups);
 
-    // If a user is logged in they will se this screen with their email
+
+    // Hvis en user er loggedIn vil de se dette page med deres email
     return (
         <View style={GlobalStyles.container}>
             {/*<View style={{ justifyContent: 'center', alignItems: 'center' }}>
@@ -87,4 +88,4 @@ const TestPage = () => {
     );
 };
 
-export default TestPage;
+export default ProfilePage;

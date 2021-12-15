@@ -1,4 +1,4 @@
-// Import modules and firebase to access data from database
+//Import af Pages og Componenter
 import React, { useState, useEffect } from 'react';
 import {
     StyleSheet,
@@ -14,35 +14,37 @@ import Modal from 'react-native-modal';
 import { GlobalStyles, BrandColors } from '../../styles/GlobalStyles';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
-// We could have made add coordinate and edit coordinate to be one, but this makes the code a little more simple
+//Vores modal til at redigere koordinator/modal på kortet. Både vores AddToolModal og EditToolModal
+// har næsten samme konstruktion.
 const EditCoordinateModal = ({ isOpen, handleClose, coordinate }) => {
-    // Initial state oject with 3
+    //Vores initial states
     const initialState = {
         address: '',
         date: '',
         availableTools: '',
         //description: '',
     };
-    // Here we take in the different variables we want to use
-    const [joinedUsers, setjoinedUsers] = useState([]);
-    const [newCoordinate, setNewCoordinate] = useState(initialState);
-    const [mode, setMode] = useState('date');
-    const [show, setShow] = useState(false);
+    //Vi indrager de forskellige variabler vi ønsker at bruge
     const [userDate, setUserDate] = useState(new Date(coordinate.date));
+    const [mode, setMode] = useState('date');
+    const [newCoordinate, setNewCoordinate] = useState(initialState);
+    const [joinedUsers, setjoinedUsers] = useState([]);
+    const [show, setShow] = useState(false);
 
-    //Get the mode to show in date picker, depending if you press change time or date
+    //Hent metoden til at vise date-picker hvis man trykker ændre tid eller dato
     const showMode = (currentMode) => {
         setShow(true);
         setMode(currentMode);
+    };
+
+    const showTimepicker = () => {
+        showMode('time');
     };
 
     const showDatepicker = () => {
         showMode('date');
     };
 
-    const showTimepicker = () => {
-        showMode('time');
-    };
 
     const onChange = (event, selectedDate) => {
         const currentDate = selectedDate || userDate;
@@ -51,26 +53,26 @@ const EditCoordinateModal = ({ isOpen, handleClose, coordinate }) => {
     };
 
     useEffect(() => {
-        //Here we find the joined users, which are on the coordinate,
-        // which is not used right now, but is supposed to be showing in this modal
+        //Her henter vi de tilkoblet users som er tilbundet koordinaterne,
+        // hvilke ikke bruges lige nu men skulle vises i vores modal
         setNewCoordinate(coordinate);
         if (coordinate.userjoined) {
             setjoinedUsers(Object.keys(coordinate.userjoined));
         }
     }, []);
 
-    // When receving input if puts it in a newcordinate object.
+    // Når programmet modtager et input, indsætter den dette som et newCoordinate object.
     const changeTextInput = (key, event) => {
         setNewCoordinate({ ...newCoordinate, [key]: event });
     };
 
     const handleSave = () => {
-        //If this happens, it handles it.
+        //Hvis ikke user kan bekræftes, sker dette.
         if (newCoordinate.userid != auth.currentUser.uid) {
-            return Alert.alert('Not your ride');
+            return Alert.alert('Not your rental.');
         }
 
-        //Gets the variables we need. Lat and long are included for future use, but will always be the value of the pressed coordinate
+        //Vi henter det variabler vi har behov for.
         const date = userDate;
         const id = newCoordinate.id;
         const { availableTools } = newCoordinate;
@@ -84,22 +86,22 @@ const EditCoordinateModal = ({ isOpen, handleClose, coordinate }) => {
             return Alert.alert('Error with input');
         }
 
-        // If we want to edit the coordinate we request the id from firebase and use .update to update the attributes of the initalState object
-
+        //Hvis vi ønsker at opdatere vores coodinates object, henter vi ID fra firebase og bruger .update til at
+        //opdatere vores attributer.
         try {
             db.ref(`coordinates/${id}`)
-                // Only choosen fields will be updated
+                // Kun de valgte attributer vil blive opdateret
                 .update({ latitude, longitude, date, availableTools });
-            // Alert after updating info, this only updates lat and long, address cannot be edited yet.
+            // OBS. pt. kan man kun opdatere lat og longitude. Adressen kan ikke opdateres endnu.
             Alert.alert('Your info has been updated');
         } catch (error) {
             Alert.alert(`Error: ${error.message}`);
         }
-        // This closes the modal
+        // Vi lukker vores modal
         handleClose();
     };
 
-    // Alert to either cancel or accept deletion of coordinate, will run handleDelete if Delete is pressed
+    // Vi kalder en alert hvis bruger ønsker at slette deres tool-rental. Kører handleDelete hvis Delete er trykket
     const confirmDelete = () => {
         if (Platform.OS === 'ios' || Platform.OS === 'android') {
             Alert.alert('Are you sure?', 'Do you want to delete the Tool-rental?', [
@@ -109,7 +111,8 @@ const EditCoordinateModal = ({ isOpen, handleClose, coordinate }) => {
         }
     };
 
-    // Removes coordinate from firebase database and navigates back or catch an error and console.logs the message
+    // Vi fjerner vores koordinater fra firebase databsen og navigere tilbage. Hvis der opstår fejl, fanger vi
+    // den og udskriver i console.log
     const handleDelete = () => {
         const id = coordinate.id;
         try {
@@ -150,7 +153,6 @@ const EditCoordinateModal = ({ isOpen, handleClose, coordinate }) => {
                     if (typeof newCoordinate[key] == 'number') {
                         newCoordinate[key] = newCoordinate[key].toString();
                     }
-                    //Address and date keys, need some formatting.
                     if (key == 'address') {
                         return (
                             <View key={index}>
@@ -210,7 +212,7 @@ const EditCoordinateModal = ({ isOpen, handleClose, coordinate }) => {
                         );
                     }
                 })}
-                {/*This button use handleSave() to save the changes in the ride */}
+                {/*Denne kamp bruger handleSave() til at håndtere ændringer til ens Tool-rental*/}
                 <View style={{flexDirection: 'row'}}>
                     <View style={{ marginVertical: 5, marginRight: 5}}>
                         <Button
@@ -219,7 +221,7 @@ const EditCoordinateModal = ({ isOpen, handleClose, coordinate }) => {
                             onPress={() => handleSave()}
                         />
                     </View>
-                    {/*This button use handleClose() from MapScreen to remove the modal from the screen  */}
+                    {/* Denne knap bruges til at lukkke vores modal */}
                     <View style={{ marginVertical: 5 }}>
                         <Button
                             title="Close"
@@ -230,7 +232,7 @@ const EditCoordinateModal = ({ isOpen, handleClose, coordinate }) => {
                         />
                     </View>
                 </View>
-                {/*This button use confirmDelete() and deletes the ride */}
+                {/* Denne knap bruges til at slette */}
                 <View style={{ marginVertical: 5 }}>
                     <Button
                         title={'Delete Tool Rental'}

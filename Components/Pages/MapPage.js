@@ -1,4 +1,4 @@
-// Importing modules and components
+//Import af Pages og Components
 import React, { useState, useEffect } from 'react';
 import {
     StyleSheet,
@@ -20,20 +20,21 @@ import { Accuracy } from 'expo-location';
 import ToolDetailsModal from '../Modals/ToolDetailsModal';
 
 const MapScreen = ({ route }) => {
-    // State for creating markers on the map, setting the default location etc.
+    // Vores states til at skabe markers. Vi sætter også en default lokation.
     const [hasLocationPermission, setHasLocationPermission] = useState(false);
     const [userMarkerCoordinate, setUserMarkerCoordinate] = useState(null);
 
-    //State for modals, coordinates, addresses, groups and currentlocation
+    //Vi sætter states for vores coodinates, groups, addresses, currentLocation, modals
+    //Vi sætter currentLocation initial state til null, da det er god kode etik
+    const [currentLocation, setCurrentLocation] = useState(null);
     const [modalVisible, setModalVisible] = useState(false);
-    const [modalInsert, setModalInsert] = useState();
-    const [coordinates, setCoordinates] = useState([]);
     const [markerAddress, setMarkerAddress] = useState();
     const [group, setGroup] = useState();
-    const [currentLocation, setCurrentLocation] = useState(null);
+    const [coordinates, setCoordinates] = useState([]);
     const [groupId, setGroupId] = useState();
+    const [modalInsert, setModalInsert] = useState();
 
-    // Alerts user to give locationpermission
+    // Vi beder brugeren om lov til at benytte lokation/gps funktion
     const getLocationPermission = async () => {
         await Location.requestForegroundPermissionsAsync().then((item) => {
             setHasLocationPermission(item.granted);
@@ -48,8 +49,8 @@ const MapScreen = ({ route }) => {
         });
     };
 
-    // The useEffect hook runs everytime the page updates, which means if something happens,
-    // getLocationPermission will run again to check if we have location permission
+    // En useEffect hook som kører hvergang siden opdateres.
+    // Hvis noget sker, kører getLocationPermission igen for at se om der er tilladelse.
     useEffect(() => {
         const response = getLocationPermission();
         getCoordinates();
@@ -108,21 +109,22 @@ const MapScreen = ({ route }) => {
         getGroup(groupid);
     };
 
-    // When the map is long pressed we set a coordinate and updates the userMarkerCoordinates array
+    // En handleLongPress funktion som sætter coordinates og opdatere vores userMarkerCoordinates array når
+    // en brugere laver et longpress på vores map
     const handleLongPress = async (event) => {
         const coordinate = event.nativeEvent.coordinate;
 
-        //Skal testes på Iphone da Mikkels virkede anderledes xx.
         await Location.reverseGeocodeAsync(coordinate).then((data) => {
             setMarkerAddress(data);
         });
         setUserMarkerCoordinate(coordinate);
-        // Haptics creates a vibration for longpress
-        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
+
+        // Vi bruger haptics til at skabe en vibrations-feedback til brugeren når der laves et longpress
+        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
         setModalVisible(true);
     };
 
-    //Change the pin color depending on if the logged in user created it or not
+    //Vi ændre farven på vores pins alt afhængig af om den loggedIn bruger skabte pin eller en anden bruger gjorde
     const getPinColor = (userid) => {
         if (userid == auth.currentUser.uid) {
             return 'violet';
@@ -211,7 +213,7 @@ const MapScreen = ({ route }) => {
                 color={BrandColors.SecondaryDark}
                 accessibilityLabel="Reload map"
             />
-            {/* Mapview shows the current location and adds a coordinate onLongPress */}
+            {/* Vores mapPage viser den nuværende lokation og tilføjre koordinater på et onLongPress */}
             <MapView
                 initialRegion={{
                     latitude: currentLocation.latitude,
@@ -235,7 +237,7 @@ const MapScreen = ({ route }) => {
                 }}
                 onLongPress={handleLongPress}
             >
-                {/* Marker for the organisation*/}
+                {/* Vores butikker/organisations markør */}
                 {!group ? null : (
                     <Marker
                         title={group.organisation}
@@ -274,7 +276,7 @@ const MapScreen = ({ route }) => {
                         );
                     }
                 })}
-                {/* Mapping through userMarkerCoordinates array and outputs each one*/}
+                {/* Går gennem userMarkerCoordinates array og laver et output for dem alle */}
                 {userMarker}
             </MapView>
             <View>

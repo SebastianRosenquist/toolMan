@@ -1,3 +1,4 @@
+//Import af Pages og Components
 import React, { useState, useEffect } from 'react';
 import {
     KeyboardAvoidingView,
@@ -14,12 +15,12 @@ import { auth } from '../../firebase';
 import { GlobalStyles, BrandColors } from '../../styles/GlobalStyles';
 
 const LoginScreen = ({ navigation }) => {
-    //Two variables used for providing email and password
+    //Opsætning af to variabler der bruges til email og password
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     useEffect(() => {
-        //If the user is already logged in go to HomeScreen, which is a reference to the tab navigator
+        //Hvis bruger er logget ind -> gå til HomeScreen hvilke er vores tabNaviagator
         const unsubscribe = auth.onAuthStateChanged((user) => {
             if (user) {
                 navigation.replace('HomeScreen');
@@ -28,14 +29,14 @@ const LoginScreen = ({ navigation }) => {
         return unsubscribe;
     }, []);
 
-    //Go to the register screen should you want to register
+    //En navigation til vores signupPage.
     const handleRegister = () => {
         navigation.navigate('Register');
     };
 
-    //This handles login
+    //En handleLogin som håndtere vores login
     const handleLogin = () => {
-        //Uses firebase method sign in user if in auth in firebase.
+        //Brug firebase.auth metode til at logge brugere ind gennem firebase.
         auth
             .signInWithEmailAndPassword(email, password)
             .then((userCredentials) => {
@@ -46,7 +47,7 @@ const LoginScreen = ({ navigation }) => {
     };
 
     return (
-        <KeyboardAvoidingView
+        <KeyboardAvoidingView //Bruger denne funktion så tastatur ikke dækker for vores inputs.
             style={styles.container}
             behavior={Platform.OS === 'ios' ? 'padding' : undefined}
         >

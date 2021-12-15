@@ -1,3 +1,4 @@
+//Import af Pages og Componenter
 import React, { useState, useEffect } from 'react';
 import {
     KeyboardAvoidingView,
@@ -12,13 +13,13 @@ import { auth, db } from '../../firebase';
 import { GlobalStyles, BrandColors } from '../../styles/GlobalStyles';
 
 const LoginScreen = ({ navigation }) => {
-    //Three variables used for providing email, password and name
+    //Vores tre variabler der bruges til email, password og brugernavn
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
 
     useEffect(() => {
-        //If the user is already logged in go to HomeScreen, which is a reference to the tab navigator
+        //Hvis bruger er logget ind -> gå til HomeScreen hvilke er vores tabNaviagator
         const unsubscribe = auth.onAuthStateChanged((user) => {
             if (user) {
                 navigation.replace('HomeScreen');
@@ -27,17 +28,19 @@ const LoginScreen = ({ navigation }) => {
         return unsubscribe;
     }, []);
 
-    //This handles register
+    //Vores register handler
     const handleRegister = () => {
-        //first we create the user
+        //Vi skal først skabe vores user
         auth
             .createUserWithEmailAndPassword(email, password)
             .then((user) => {
                 const userCredentials = user.user;
                 if (user && name) {
                     try {
-                        //If the user and name if there, set some data in the userData object
-                        //We do this because you cannot add properties to the auth object, so we make them in this.
+                        //Hvis vores user og navn er der, sætter vi noget data i vores userData object
+                        //Vi gør dette fordi vi man ikke kan tilføje properties til et auth object
+                        //Så vi er nødt til at skabe dem her
+                        //Vi tildeler også alle group 1 som start
                         db.ref('userData/' + userCredentials.uid).set({
                             name: name,
                             group: 1,
@@ -51,13 +54,13 @@ const LoginScreen = ({ navigation }) => {
             .catch((error) => alert(error.message));
     };
 
-    //Go to the login screen should you want to login
+    //Gå til loginPage
     const handleLogin = () => {
         navigation.navigate('Login');
     };
 
     return (
-        <KeyboardAvoidingView
+        <KeyboardAvoidingView //Bruger denne funktion så tastatur ikke dækker for vores inputs.
             style={styles.container}
             behavior={Platform.OS === 'ios' ? 'padding' : undefined}
         >

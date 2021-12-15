@@ -1,3 +1,4 @@
+//Import af Pages og Components
 import * as React from 'react';
 import {View, Text, StyleSheet, TextInput, Button, Alert, ScrollView, SafeAreaView,} from 'react-native';
 import firebase from 'firebase';
