@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 
+// Et online style sheet template som vi har benyttet os af. Vi har ændret farverne ved brug af bla. https://coolors.co/
 export const BrandColors = {
     //60%
     PrimaryDark: '#333333', // Text color: All whites, Two lightest secondary
@@ -51,7 +52,11 @@ export const GlobalStyles = StyleSheet.create({
         marginLeft: 10,
     },
     logout: { marginRight: 10 },
-    ul: { fontSize: 12, margin: 5 },
+    ul: {
+        fontSize: 12,
+        margin: 5,
+        textAlign: 'center'
+    },
 
     columnView: {
         flex: 1,

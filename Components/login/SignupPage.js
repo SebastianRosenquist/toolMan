@@ -66,10 +66,10 @@ const LoginScreen = ({ navigation }) => {
         >
             <View style={styles.inputContainer}>
                 <Text style={styles.header}>
-                    Welcome to ToolMan
+                    Register to ToolMan
                 </Text>
                 <Text style={styles.buttonOutlineText}>
-                    Please input your desired credentials to signup.
+                    Please input your desired credentials to register.
                 </Text>
                 <TextInput
                     placeholder="Name"
@@ -118,6 +118,7 @@ const styles = StyleSheet.create({
     header: {
         ...GlobalStyles.header,
         color: BrandColors.GreyDark,
+        textAlign: 'center',
     },
     inputContainer: {
         width: '80%',
@@ -164,5 +165,6 @@ const styles = StyleSheet.create({
         color: BrandColors.PrimaryDark,
         fontWeight: '700',
         fontSize: 16,
+        textAlign: 'center',
     },
 });

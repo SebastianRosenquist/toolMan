@@ -62,7 +62,7 @@ const LoginScreen = ({ navigation }) => {
                         }}
                     />
                 </View>
-                <Text style={styles.header}>Welcome to ToolMan, please log in!</Text>
+                <Text style={styles.header}>Welcome to ToolMan - your friendly tool-finding App!</Text>
                 <TextInput
                     placeholder="Email"
                     value={email}
@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
     },
     header: {
-        alignItems: 'center',
+        textAlign: 'center',
         fontWeight: 'bold',
         paddingBottom: 20,
         fontSize: 18,

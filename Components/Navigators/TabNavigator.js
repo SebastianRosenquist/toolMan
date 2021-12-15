@@ -66,7 +66,7 @@ const TabNavigator = ({ navigation }) => {
 
     return (
         <Tab.Navigator
-            screenOptions={{ tabBarActiveTintColor: BrandColors.PrimaryLight }}
+            screenOptions={{ tabBarActiveTintColor: BrandColors.SecondaryLight }}
         >
             <Tab.Screen
                 name="Info"
@@ -82,9 +82,9 @@ const TabNavigator = ({ navigation }) => {
                         <Ionicons
                             name="help-circle-outline"
                             color={
-                                focused ? BrandColors.PrimaryLight : BrandColors.PrimaryDark
+                                focused ? BrandColors.SecondaryLight : BrandColors.PrimaryDark
                             }
-                            size={20}
+                            size={30}
                         />
                     ),
                 }}
@@ -103,9 +103,9 @@ const TabNavigator = ({ navigation }) => {
                         <Ionicons
                             name="hammer-outline"
                             color={
-                                focused ? BrandColors.PrimaryLight : BrandColors.PrimaryDark
+                                focused ? BrandColors.SecondaryLight : BrandColors.PrimaryDark
                             }
-                            size={20}
+                            size={30}
                         />
                     ),
                 }}
@@ -125,9 +125,9 @@ const TabNavigator = ({ navigation }) => {
                         <Ionicons
                             name="globe"
                             color={
-                                focused ? BrandColors.PrimaryLight : BrandColors.PrimaryDark
+                                focused ? BrandColors.SecondaryLight : BrandColors.PrimaryDark
                             }
-                            size={20}
+                            size={30}
                         />
                     ),
                 }}
@@ -147,9 +147,9 @@ const TabNavigator = ({ navigation }) => {
                         <Ionicons
                             name="search"
                             color={
-                                focused ? BrandColors.PrimaryLight : BrandColors.PrimaryDark
+                                focused ? BrandColors.SecondaryLight : BrandColors.PrimaryDark
                             }
-                            size={20}
+                            size={30}
                         />
                     ),
                 }}
@@ -169,9 +169,9 @@ const TabNavigator = ({ navigation }) => {
                         <Ionicons
                             name="person-circle-outline"
                             color={
-                                focused ? BrandColors.PrimaryLight : BrandColors.PrimaryDark
+                                focused ? BrandColors.SecondaryLight : BrandColors.PrimaryDark
                             }
-                            size={20}
+                            size={30}
                         />
                     ),
                 }}
