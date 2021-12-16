@@ -79,12 +79,30 @@ const ProfilePage = () => {
             </Text>
             <Text style={{ margin: 5 }}>
                 This page will in future iterations have all the relevant information about
-                your profile. Here you will be able to see you what you are renting out, who
-                has rented it, and where they are renting from. Once someone has asked to
-                rent your item, or if you are renting an item, you will be able to chat with
+                your profile. Here you will be able to see:
+            </Text>
+                <Text style={GlobalStyles.ul}>
+                    {'\u2B24'} What you are renting out and from where
+                </Text>
+                <Text style={GlobalStyles.ul}>
+                    {'\u2B24'} Who you are renting to, if you choose to accept
+                </Text>
+                <Text style={GlobalStyles.ul}>
+                    {'\u2B24'} What you are renting and from where
+                </Text>
+                <Text style={GlobalStyles.ul}>
+                    {'\u2B24'} Who you are renting from, should they choose to accept
+                </Text>
+            <Text style={{ margin: 5 }}>
+                Once someone has asked to rent your item, or if you are renting an item, you will be able to chat with
                 said person about said item.
             </Text>
+            <Text style={{ margin: 5 }}>
+                Right now you can logout of your account using the button in the top-left
+                corner. We hope to be able to implement more features in the future.
+            </Text>
         </View>
+
     );
 };
 

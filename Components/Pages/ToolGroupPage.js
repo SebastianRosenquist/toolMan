@@ -86,7 +86,7 @@ const ToolGroupPage = () => {
                             style={GlobalStyles.container}
                             onPress={() => handleSelectGroup(groupKeys[index])}
                         >
-                            <Text style={{ color: BrandColors.Grey }}>
+                            <Text style={{ color: BrandColors.Grey, fontSize: 25 }}>
                                 {item.toolGroup}
                             </Text>
                         </TouchableOpacity>

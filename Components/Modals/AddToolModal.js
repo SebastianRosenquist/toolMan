@@ -94,7 +94,7 @@ const AddCoordinateModal = ({
         return (
             <Modal
                 visible={isOpen}
-                animationType="slide"
+                animationType="fade"
                 transparent={true}
                 onRequestClose={() => {
                     handleClose();
@@ -109,7 +109,7 @@ const AddCoordinateModal = ({
     return (
         <Modal
             visible={isOpen}
-            animationType="slide"
+            animationType="fade"
             transparent={true}
             onRequestClose={() => {
                 handleClose();
@@ -199,10 +199,10 @@ export default AddCoordinateModal;
 const styles = StyleSheet.create({
     modalView: {
         margin: 30,
-        backgroundColor: BrandColors.WhiteLight,
-        borderRadius: 20,
         padding: 35,
         marginTop: 70,
+        backgroundColor: BrandColors.WhiteLight,
+        borderRadius: 20,
         alignItems: 'flex-start',
         shadowColor: BrandColors.GreyDark,
         shadowOffset: {

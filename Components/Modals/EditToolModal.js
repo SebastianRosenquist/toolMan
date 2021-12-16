@@ -127,7 +127,7 @@ const EditCoordinateModal = ({ isOpen, handleClose, coordinate }) => {
         return (
             <Modal
                 visible={isOpen}
-                animationType="slide"
+                animationType="fade"
                 transparent={true}
                 onRequestClose={() => {
                     handleClose();
@@ -142,7 +142,7 @@ const EditCoordinateModal = ({ isOpen, handleClose, coordinate }) => {
     return (
         <Modal
             visible={isOpen}
-            animationType="slide"
+            animationType="fade"
             transparent={true}
             onRequestClose={() => {
                 handleClose();

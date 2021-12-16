@@ -121,7 +121,7 @@ const CoordinateDetailsModal = ({ isOpen, handleClose, coordinate }) => {
         return (
             <Modal
                 visible={isOpen}
-                animationType="slide"
+                animationType="fade"
                 transparent={true}
                 onRequestClose={() => {
                     handleClose();
@@ -167,7 +167,7 @@ const CoordinateDetailsModal = ({ isOpen, handleClose, coordinate }) => {
     return (
         <Modal
             visible={isOpen}
-            animationType="slide"
+            animationType="fade"
             transparent={true}
             onRequestClose={() => {
                 handleClose();

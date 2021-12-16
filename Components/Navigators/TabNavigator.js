@@ -46,7 +46,7 @@ const TabNavigator = ({ navigation }) => {
     const LogoutButton = () => {
         if (user.loggedIn) {
             return (
-                <View style={{ marginRight: 10 }}>
+                <View style={{ marginLeft: 10 }}>
                     <Button
                         onPress={() => {
                             auth
@@ -77,7 +77,7 @@ const TabNavigator = ({ navigation }) => {
                     headerStyle: {
                         backgroundColor: BrandColors.PrimaryDark,
                     },
-                    headerRight: () => LogoutButton(),
+                    //headerLeft: () => LogoutButton(),
                     tabBarIcon: ({ focused }) => (
                         <Ionicons
                             name="help-circle-outline"
@@ -98,7 +98,7 @@ const TabNavigator = ({ navigation }) => {
                     headerStyle: {
                         backgroundColor: BrandColors.PrimaryDark,
                     },
-                    headerRight: () => LogoutButton(),
+                    //headerRight: () => LogoutButton(),
                     tabBarIcon: ({ focused }) => (
                         <Ionicons
                             name="hammer-outline"
@@ -120,7 +120,7 @@ const TabNavigator = ({ navigation }) => {
                     headerStyle: {
                         backgroundColor: BrandColors.PrimaryDark,
                     },
-                    headerRight: () => LogoutButton(),
+                    //headerRight: () => LogoutButton(),
                     tabBarIcon: ({ focused }) => (
                         <Ionicons
                             name="globe"
@@ -142,7 +142,7 @@ const TabNavigator = ({ navigation }) => {
                     headerStyle: {
                         backgroundColor: BrandColors.PrimaryDark,
                     },
-                    headerRight: () => LogoutButton(),
+                    //headerRight: () => LogoutButton(),
                     tabBarIcon: ({ focused }) => (
                         <Ionicons
                             name="search"
@@ -164,7 +164,7 @@ const TabNavigator = ({ navigation }) => {
                     headerStyle: {
                         backgroundColor: BrandColors.PrimaryDark,
                     },
-                    headerRight: () => LogoutButton(),
+                    headerLeft: () => LogoutButton(),
                     tabBarIcon: ({ focused }) => (
                         <Ionicons
                             name="person-circle-outline"
