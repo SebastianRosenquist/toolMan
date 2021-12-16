@@ -1,7 +1,7 @@
 # ToolMan
 
 ## Describtion
-Toolman is a Tool-Sharing-APP which hopes to make it easiere for comunities and people to rent and share their tools.
+ToolMan is a Tool-Sharing-APP which hopes to make it easier for communities and people to rent and share their tools.
 The app is currently a work in progress and in a very early development stage with many features still undeveloped.
 
 The app currently uses reactNative Firebase and Firebase Realtime Database.
