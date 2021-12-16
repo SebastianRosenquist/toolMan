@@ -67,8 +67,17 @@ npm start
 
 When running the app, make sure NOT to run in web-view. The app is not developed for this.
 
-## Short Video Demo:
+## Credits
+Credits where credits are due.
 
+We learned a lot from fellow students and teachers (Eigil & Jesper).
+
+Also, we would like to thank several YouTubers who helped with the understanding of React-Native and its components.
+Especially: Darwin Tech - https://youtu.be/qlELLikT3FU
+& notJust.dev https://youtu.be/NAos0QKgyxw
+
+## Short Video Demo:
+https://youtu.be/9H3_mPNsP80
 
 ## Screen-dumps of running App
 <img src='/assets/appScreenDumps/1_Login.jpg' width='400' height='790'>
